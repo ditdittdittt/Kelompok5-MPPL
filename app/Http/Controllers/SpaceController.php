@@ -28,7 +28,7 @@ class SpaceController extends Controller
      */
     public function create()
     {
-        // ini nanti isinya buat create
+        return view('pages.space.create');
     }
 
     /**
