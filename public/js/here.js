@@ -7,7 +7,7 @@ if (navigator.geolocation) {
         }
         // Initialize the platform object:
         let platform = new H.service.Platform({
-            'apikey': "{lqD2CpIlaysiG_t0nnIVDc8XiMOA6iNX5jUivZNCK9M}"
+            'apikey': window.hereApiKey
         });
 
         // Obtain the default map types from the platform object
@@ -22,7 +22,7 @@ if (navigator.geolocation) {
                     center: objLocalCoord,
                     pixelRatio: window.devicePixelRatio || 1
                 });
-            window.addEventListener('resize', () => map.getViewPort().resize());
+                window.addEventListener('resize', () => map.getViewPort().resize());
 
         let ui = H.ui.UI.createDefault(map, defaultLayers);
         let mapEvents = new H.mapevents.MapEvents(map);
