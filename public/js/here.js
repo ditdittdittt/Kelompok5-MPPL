@@ -53,7 +53,7 @@ if (navigator.geolocation) {
             map.addEventListener('dragstart', function (ev) {
                 let target = ev.target,
                     pointer = ev.currentPointer;
-                if (target instanceof H.map.marker) {
+                if (target instanceof H.map.Marker) {
                     let targetPosition = map.geoToScreen(target.getGeometry());
                     target['offset'] = new H.math.Point(pointer.viewportX - targetPosition.x, pointer.viewportY - targetPosition.y);
                     behavior.disable();
@@ -66,26 +66,29 @@ if (navigator.geolocation) {
                 let target = ev.target,
                     pointer = ev.currentPointer;
                 if (target instanceof H.map.Marker) {
-                    target.setGeometry(map.screenToGeo(pointer.viewportX - target['offset'].x, pointer.viewportY - target['offset'].y))
-                };
+                    target.setGeometry(
+                        map.screenToGeo(
+                            pointer.viewportX - target['offset'].x, pointer.viewportY - target['offset'].y
+                        )
+                    );
+                }
             }, false);
 
             // re-enable the default draggability of the underlying map
             // when dragging has completed
             map.addEventListener('dragend', function (ev) {
                 let target = ev.target;
-                if (target instanceof M.map.marker) {
+                if (target instanceof H.map.Marker) {
                     behavior.enable();
                     let resultCoord = map.screenToGeo(
                         ev.currentPointer.viewportX,
                         ev.currentPointer.viewportY
                     );
-                    console.log(resultCoord)
+                    // console.log(resultCoord)
                     inputLat.value = resultCoord.lat;
                     inputLng.value = resultCoord.lng;
                 }
             }, false);
-
         }
 
         if (window.action == "submit") {
