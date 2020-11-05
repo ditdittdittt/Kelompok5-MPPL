@@ -11,6 +11,7 @@ class SpaceController extends Controller
     public function getSpaces(Request $request)
     {
        $space = new Space();
-       $space->getSpaces($request->lat, $request->lng, $request->rad)->get();
+       return $space->getSpaces($request->lat, $request->lng, $request->rad)->get();
+
     }
 }
