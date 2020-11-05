@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Space;
 use Illuminate\Http\Request;
+
 
 class SpaceController extends Controller
 {
@@ -18,6 +20,7 @@ class SpaceController extends Controller
      */
     public function index()
     {
+        $spaces = Space::orderBy('created_at', 'DESC')->paginate(4);
         return view('pages.space.index');
     }
 
