@@ -138,6 +138,11 @@ class SpaceController extends Controller
         if ($space->user_id != request()->user()->id) {
             return redirect()->back();
         }
+
+        foreach ($space->photos as $photo){
+            Storage::delete('public/'.$photo->path);
+        }
+        
         $space->delete();
         return redirect()->route('space.index')->with('status', 'Space deleted!');
     }
