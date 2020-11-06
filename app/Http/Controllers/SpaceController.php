@@ -39,7 +39,7 @@ class SpaceController extends Controller
     {
         return view('pages.space.browse');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,21 +55,21 @@ class SpaceController extends Controller
             'latitude' => ['required'],
             'longitude' => ['required'],
             'photo' => ['required'],
-            'photo.*' => ['mimes:jpg,png']
+            'photo.*' => ['mimes:jpg,png,jpeg,ico']
         ]);
 
-        $request->user()->spaces()->create($request->except('photo'));
+        $space = $request->user()->spaces()->create($request->except('photo'));
 
         $spacePhotos = [];
 
         foreach ($request->file('photo') as $file) {
-           $path = Storage::disk('public')->putFile('spaces', $file);
+            $path = Storage::disk('public')->putFile('spaces', $file);
             $spacePhotos[] = [
                 'space_id' => $space->id,
                 'path' => $path
             ];
         }
-        
+
         $space->photos()->insert($spacePhotos);
 
         return redirect()->route('space.index')->with('status', 'Space created!');

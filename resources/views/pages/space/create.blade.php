@@ -76,14 +76,15 @@
                                 </div>
                             </div>
                         </div>
+    
                         @if ($errors->has('photo'))
                             <ul class="alert alert-danger">
                                 @foreach ($errors->get('photo') as $error)
-                                    <li>{{ $error }} </li>
+                                    <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
                         @endif
-                        <div class="class invisible">
+                        <div class="clone invisible">
                             <div class="input-group mt-2">
                                 <input type="file" name="photo[]" class="form-control">
                                 <div class="input-group-append">
