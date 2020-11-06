@@ -138,7 +138,14 @@ if (navigator.geolocation) {
 
             init(objLocalCoord.lat, objLocalCoord.lng, 40);
         }
+
     })
+
+        // Open url direction
+        function openDirection(lat, lng, id) {
+            window.open(`/space/${id}?from=${objLocalCoord.lat},${objLocalCoord.lng}&to=${lat},${lng}`, "_self");
+        }
+
 } else {
     console.error("Geolocation is not supported by this browser!");
 }
