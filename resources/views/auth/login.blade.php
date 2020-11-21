@@ -74,19 +74,21 @@
                                             {{ __('LOGIN') }}
                                         </button>
 
-                                        @if (Route::has('password.request'))
+                                        <!-- @if (Route::has('password.request'))
                                         <button class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </button>
-                                        @endif
+                                        @endif -->
                                     </div>
                                 </div>
 
                                 <!-- LINE -->
+                                <br>
                                 <hr />
 
                                 <!-- REGISTER -->
                                 <div>
+                                    <label class="d-flex justify-content-center" style="font-size: 16px; color: #1C7BD9;">Belum Punya Akun?</label>
                                     <a class="btn btn-block login-btn" href="{{ route('register') }}">REGISTER</a>
                                 </div>
                             </form>
