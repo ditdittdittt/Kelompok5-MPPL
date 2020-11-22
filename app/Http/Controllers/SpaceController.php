@@ -72,7 +72,7 @@ class SpaceController extends Controller
 
         $space->photos()->insert($spacePhotos);
 
-        return redirect()->route('space.index')->with('status', 'Space created!');
+        return redirect()->route('space.index')->with('status', 'Lokasi berhasil ditambahkan!');
     }
 
     /**
@@ -123,7 +123,7 @@ class SpaceController extends Controller
             'longitude' => ['required'],
         ]);
         $space->update($request->all());
-        return redirect()->route('space.index')->with('status', 'Space updated!');
+        return redirect()->route('space.index')->with('status', 'Lokasi berhasil diperbaharui!');
     }
 
     /**
@@ -144,6 +144,6 @@ class SpaceController extends Controller
         }
         
         $space->delete();
-        return redirect()->route('space.index')->with('status', 'Space deleted!');
+        return redirect()->route('space.index')->with('status', 'Lokasi berhasil dihapus!');
     }
 }
