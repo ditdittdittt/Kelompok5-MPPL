@@ -19,9 +19,15 @@ class SpaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $spaces = Space::orderBy('created_at', 'DESC')->paginate(4);
+        // dd($request->all());
+        // Fitur Pencarian SPACE
+        if($request->has('cari')){
+            $spaces = Space::where('title','LIKE','%' . $request->cari . '%')->paginate(4);
+        }else{
+            $spaces = Space::orderBy('created_at', 'DESC')->paginate(4);
+        }
         return view('pages.space.index', compact('spaces'));
     }
 
@@ -39,7 +45,6 @@ class SpaceController extends Controller
     {
         return view('pages.space.browse');
     }
-
     /**
      * Store a newly created resource in storage.
      *

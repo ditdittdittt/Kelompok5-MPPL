@@ -4927,6 +4927,17 @@ input[type=button].btn-block {
   color: #fff;
 }
 
+/* SEARCH */
+
+.active-cyan-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #1C7BD9;
+  box-shadow: 0 0 0 1px #1C7BD9;
+}
+.active-cyan-3 input[type=text] {
+  border: 1px solid #1C7BD9;
+  box-shadow: 0 0 0 1px #1C7BD9;
+}
+
 .card {
   position: relative;
   display: flex;
