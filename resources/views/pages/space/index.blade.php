@@ -28,6 +28,13 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         {{ $space->title }}
+                        @if (Auth::user()->name == 'admin')
+                        <form action="{{ route('space.destroy', $space->id) }}" method="post">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger float-right" onclick="return confirm('Hapus Lokasi?');">Delete</button>
+                            <a href="{{ route('space.edit', $space->id) }}" class="btn btn-sm btn-info float-right text-white">Edit</a>
+                        </form>
+                        @endif
                         @if ($space->user_id == Auth::user()->id)
                         <form action="{{ route('space.destroy', $space->id) }}" method="post">
                             @csrf @method('DELETE')

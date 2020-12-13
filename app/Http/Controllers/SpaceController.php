@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 class SpaceController extends Controller
@@ -100,8 +101,9 @@ class SpaceController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user()->name;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin') {
             return redirect()->back();
         }
         return view('pages.space.edit', compact('space'));
@@ -116,8 +118,9 @@ class SpaceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin') {
             return redirect()->back();
         }
         $this->validate($request, [
@@ -139,8 +142,9 @@ class SpaceController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin') {
             return redirect()->back();
         }
 
