@@ -7,7 +7,7 @@ if (navigator.geolocation) {
         }
         // Initialize the platform object:
         let platform = new H.service.Platform({
-            'apikey': window.hereApiKey
+            'apikey': "0H0rh1eG9gKnXC1hSxn44oxYQxpIBHAiu8mJ_Lu8tdk"
         });
 
         // Obtain the default map types from the platform object
