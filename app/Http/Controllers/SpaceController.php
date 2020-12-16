@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 class SpaceController extends Controller
@@ -19,9 +20,15 @@ class SpaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $spaces = Space::orderBy('created_at', 'DESC')->paginate(4);
+        // dd($request->all());
+        // Fitur Pencarian SPACE
+        if($request->has('cari')){
+            $spaces = Space::where('title','LIKE','%' . $request->cari . '%')->paginate(4);
+        }else{
+            $spaces = Space::orderBy('created_at', 'DESC')->paginate(4);
+        }
         return view('pages.space.index', compact('spaces'));
     }
 
@@ -39,7 +46,6 @@ class SpaceController extends Controller
     {
         return view('pages.space.browse');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -95,8 +101,9 @@ class SpaceController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
         return view('pages.space.edit', compact('space'));
@@ -111,8 +118,9 @@ class SpaceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
         $this->validate($request, [
@@ -134,8 +142,9 @@ class SpaceController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id) {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
 

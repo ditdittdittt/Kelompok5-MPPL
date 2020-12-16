@@ -67,18 +67,18 @@
                                     </div>
                                 </div>
 
-                                <!-- <input name="login" id="login" class="btn btn-block login-btn" type="button" value="LOGIN"> -->
                                 <div>
                                     <div>
                                         <button type="submit" class="btn btn-block login-btn">
                                             {{ __('LOGIN') }}
                                         </button>
 
-                                        <!-- @if (Route::has('password.request'))
-                                        <button class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </button>
-                                        @endif -->
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
+
                                     </div>
                                 </div>
 
@@ -92,8 +92,7 @@
                                     <a class="btn btn-block login-btn" href="{{ route('register') }}">REGISTER</a>
                                 </div>
                             </form>
-                            <!-- <a href="#!" class="forgot-password-link">Forgot password?</a>
-              <p class="login-wrapper-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p> -->
+
                         </div>
                     </div>
                 </div>
