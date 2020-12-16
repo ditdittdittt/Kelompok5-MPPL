@@ -101,9 +101,9 @@ class SpaceController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->name;
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id && $user != 'admin') {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
         return view('pages.space.edit', compact('space'));
@@ -118,9 +118,9 @@ class SpaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user()->name;
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id && $user != 'admin') {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
         $this->validate($request, [
@@ -142,9 +142,9 @@ class SpaceController extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->name;
+        $user = Auth::user()->email;
         $space = Space::findOrFail($id);
-        if ($space->user_id != request()->user()->id && $user != 'admin') {
+        if ($space->user_id != request()->user()->id && $user != 'admin_adminipbyourmaps@gmail.com') {
             return redirect()->back();
         }
 

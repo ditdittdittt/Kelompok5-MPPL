@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         {{ $space->title }}
-                        @if (Auth::user()->name == 'admin')
+                        @if (Auth::user()->email == 'admin_adminipbyourmaps@gmail.com')
                         <form action="{{ route('space.destroy', $space->id) }}" method="post">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger float-right" onclick="return confirm('Hapus Lokasi?');">Delete</button>
